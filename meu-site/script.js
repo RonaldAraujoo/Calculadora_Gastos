@@ -29,7 +29,11 @@ function atualizarRestante() {
         return parseFloat(li.querySelector(".valor").textContent.replace("R$ ", ""));
     }).reduce((acc, valor) => acc + valor, 0);
     const restante = renda - despesas;
-    restanteP.textContent = `Renda disponível após despesas: R$ ${restante.toFixed(2)}`;
+    restanteP.textContent = `Renda disponível após despesas: ${restante.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    })}`;
+    
 }
 
 // Função para adicionar uma despesa
@@ -45,7 +49,10 @@ despesaForm.addEventListener("submit", function(event) {
 
         li.innerHTML = `
             <span class="descricao">${descricao}</span>
-            <span class="valor">R$ ${valor.toFixed(2)}</span>
+            <span class="valor">${valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+})}</span>
             <button class="editar">Editar</button>
             <button class="excluir">Excluir</button>
         `;
