@@ -22,62 +22,73 @@ const valorInput = document.getElementById("valor");
 const listaDespesas = document.getElementById("lista-despesas");
 const restanteP = document.getElementById("restante");
 
+// Função para formatar e garantir que o valor seja um número válido
+function formatarValor(valor) {
+    if (typeof valor !== "string") valor = String(valor);
+    valor = valor.replace(/\./g, "").replace(",", ".").replace(/\s+/g, "");
+    const valorConvertido = parseFloat(valor);
+    return isNaN(valorConvertido) ? 0 : valorConvertido;
+}
+
 // Função para atualizar o valor restante
 function atualizarRestante() {
-    const renda = parseFloat(rendaInput.value) || 0;
+    const renda = formatarValor(rendaInput.value);
     const despesas = Array.from(listaDespesas.children).map(li => {
-        return parseFloat(li.querySelector(".valor").textContent.replace("R$ ", ""));
+        const textoValor = li.querySelector(".valor").textContent;
+        const valorDespesa = textoValor.replace(/[^\d,]/g, "");
+        return formatarValor(valorDespesa);
     }).reduce((acc, valor) => acc + valor, 0);
+
     const restante = renda - despesas;
-    restanteP.textContent = `Renda disponível após despesas: ${restante.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    })}`;
-    
+
+    if (isNaN(restante)) {
+        restanteP.textContent = "Renda disponível após despesas: R$ 0,00";
+    } else {
+        restanteP.textContent = `Renda disponível após despesas: ${restante.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        })}`;
+    }
 }
 
 // Função para adicionar uma despesa
 despesaForm.addEventListener("submit", function(event) {
-    event.preventDefault(); // Evita o comportamento padrão do form
+    event.preventDefault();
 
     const descricao = descricaoInput.value;
-    const valor = parseFloat(valorInput.value);
+    const valor = formatarValor(valorInput.value);
 
-    if (descricao && valor) {
+    if (descricao && valor > 0) {
         const li = document.createElement("li");
         li.classList.add("despesa-item");
 
         li.innerHTML = `
             <span class="descricao">${descricao}</span>
             <span class="valor">${valor.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL"
-})}</span>
+                style: "currency",
+                currency: "BRL"
+            })}</span>
             <button class="editar">Editar</button>
             <button class="excluir">Excluir</button>
         `;
 
         listaDespesas.appendChild(li);
 
-        // Limpar os campos de entrada
         descricaoInput.value = "";
         valorInput.value = "";
 
-        // Atualizar o valor restante após a despesa
         atualizarRestante();
 
-        // Editar despesa
         const editarBtn = li.querySelector(".editar");
-        editarBtn.addEventListener("click", function() {
+        editarBtn.addEventListener("click", function () {
             descricaoInput.value = descricao;
             valorInput.value = valor;
-            li.remove(); // Remover a despesa para editar
+            li.remove();
             atualizarRestante();
         });
 
-        // Excluir despesa
         const excluirBtn = li.querySelector(".excluir");
-        excluirBtn.addEventListener("click", function() {
+        excluirBtn.addEventListener("click", function () {
             li.remove();
             atualizarRestante();
         });
@@ -87,4 +98,6 @@ despesaForm.addEventListener("submit", function(event) {
 });
 
 // Atualizar valor restante quando a renda for alterada
-rendaInput.addEventListener("input", atualizarRestante);
+rendaInput.addEventListener("input", function () {
+    atualizarRestante();
+});
