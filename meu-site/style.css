@@ -1,0 +1,221 @@
+/* Estilo geral */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #8B4513, #A0522D);
+  color: #fff;
+}
+
+/* Página de apresentação */
+#apresentacao {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(45deg, #8B4513, #A0522D); /* Siena amadeirado */
+}
+
+.container {
+  max-width: 800px;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+p {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+#comecar-btn {
+  padding: 15px 30px;
+  background-color: #fff;
+  color: #8B4513;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#comecar-btn:hover {
+  background-color: #A0522D;
+  color: white;
+}
+
+/* Menu de navegação */
+nav {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.menu {
+  display: none;
+  background-color: #333;
+  position:static;
+  top: 100%;
+  margin-top: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  margin: 5px 0;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+#menu-btn {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#menu-btn:hover {
+  background-color: #555;
+}
+
+/* Página de controle */
+#controle {
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(45deg, #8B4513, #A0522D); /* Siena amadeirado */
+  color: white;
+}
+
+h2 {
+  font-size: 28px;
+  color: #fff;
+}
+
+input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #5C4033; /* tom escuro amadeirado */
+  color: white;
+}
+
+input::placeholder {
+  color: #ddd;
+}
+
+input:focus {
+  outline: none;
+  background-color: #6e4f3a;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #8B4513;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #A0522D;
+  color: white;
+}
+
+#restante {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Lista de despesas */
+#lista-despesas {
+  list-style-type: none;
+  padding: 0;
+}
+
+#lista-despesas li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #5C4033; /* caixa de despesa com fundo amadeirado escuro */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#lista-despesas li span {
+  font-size: 16px;
+}
+
+#lista-despesas li .descricao {
+  flex: 1;
+}
+
+#lista-despesas li .valor {
+  margin-left: 10px;
+  color: #FFD700; /* destaque dourado para o valor */
+  font-weight: bold;
+}
+
+#lista-despesas li button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+}
+
+#lista-despesas li .editar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#lista-despesas li .editar:hover {
+  background-color: #45a049;
+}
+
+#lista-despesas li .excluir {
+  background-color: #f44336;
+  color: white;
+}
+
+#lista-despesas li .excluir:hover {
+  background-color: #e53935;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  font-size: 14px;
+}
