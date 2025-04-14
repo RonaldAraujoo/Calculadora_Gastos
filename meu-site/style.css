@@ -219,3 +219,9 @@ footer {
   color: white;
   font-size: 14px;
 }
+.mensagem-vazia {
+  color: #ccc;
+  font-style: italic;
+  text-align: center;
+  margin-top: 1rem;
+}
